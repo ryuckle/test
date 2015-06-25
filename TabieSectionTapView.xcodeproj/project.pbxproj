@@ -24,6 +24,7 @@
 		3755A4571B36AA9700930A07 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 3755A4561B36AA9700930A07 /* UIColor+Hex.m */; };
 		3755A45B1B36ABEE00930A07 /* ArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3755A4591B36ABEE00930A07 /* ArticleTableViewCell.m */; };
 		3755A45C1B36ABEE00930A07 /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3755A45A1B36ABEE00930A07 /* ArticleTableViewCell.xib */; };
+		3755A45E1B3C853D00930A07 /* 77_Essential_Icons_Calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3755A45D1B3C853D00930A07 /* 77_Essential_Icons_Calendar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		3755A4581B36ABEE00930A07 /* ArticleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleTableViewCell.h; sourceTree = "<group>"; };
 		3755A4591B36ABEE00930A07 /* ArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTableViewCell.m; sourceTree = "<group>"; };
 		3755A45A1B36ABEE00930A07 /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
+		3755A45D1B3C853D00930A07 /* 77_Essential_Icons_Calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 77_Essential_Icons_Calendar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				3755A45A1B36ABEE00930A07 /* ArticleTableViewCell.xib */,
 				3755A4521B36AA4D00930A07 /* Menu.h */,
 				3755A4531B36AA4D00930A07 /* Menu.m */,
+				3755A45D1B3C853D00930A07 /* 77_Essential_Icons_Calendar.png */,
 				3755A44C1B36A32200930A07 /* ScrollMenuBar.h */,
 				3755A44D1B36A32200930A07 /* ScrollMenuBar.m */,
 				3755A4551B36AA9700930A07 /* UIColor+Hex.h */,
@@ -245,6 +248,7 @@
 			files = (
 				3755A4281B3457D300930A07 /* Main.storyboard in Resources */,
 				3755A4461B345B0100930A07 /* TableSectionTapVC.xib in Resources */,
+				3755A45E1B3C853D00930A07 /* 77_Essential_Icons_Calendar.png in Resources */,
 				3755A42D1B3457D300930A07 /* LaunchScreen.xib in Resources */,
 				3755A42A1B3457D300930A07 /* Images.xcassets in Resources */,
 				3755A45C1B36ABEE00930A07 /* ArticleTableViewCell.xib in Resources */,

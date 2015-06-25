@@ -10,6 +10,7 @@
 #import "TableSectionTapVC.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *calenderButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *aButton;
 @end
@@ -18,6 +19,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.calenderButton.layer.cornerRadius = 10;
+    self.calenderButton.layer.borderWidth = 1;
+    self.calenderButton.layer.borderColor = [UIColor blueColor].CGColor;
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 - (IBAction)buttonTap:(id)sender {

@@ -117,6 +117,7 @@ static NSInteger const TAG_TAB_BASE = 1000;
     [_scrollView exchangeSubviewAtIndex:separateViewIndex withSubviewAtIndex:lastIndex-1];
     [_scrollView exchangeSubviewAtIndex:selectedTabIndex withSubviewAtIndex:lastIndex];
     
+    
     // セパレターの色を替える
     _separateView.backgroundColor = tab.color ;
     

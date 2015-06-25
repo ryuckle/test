@@ -9,6 +9,7 @@
 #import "TableSectionTapVC.h"
 #import "SessionViewController.h"
 #import "PagingScrollView.h"
+#import "ArticleTableViewCell.h"
 
 
 
@@ -38,7 +39,7 @@ static const float SCROLL_MENU_BAR_HEIGHT = 40.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self reloadTableView];
+//    [self reloadTableView];
     
 //    [self.aTableView setDataSource:self];
 //    [self.aTableView setDelegate:self];
@@ -61,56 +62,30 @@ static const float SCROLL_MENU_BAR_HEIGHT = 40.0f;
     // Dispose of any resources that can be recreated.
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return _sessionItems.count;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
 }
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _subjectItems.count + 1;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (ArticleTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
-    NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    // セルが作成されていないか?
-    if (!cell) { // yes
-        // セルを作成
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    ArticleTableViewCell *cell = (ArticleTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"ArticleTableViewCell"
+                                                                                        forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[ArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ArticleTableViewCell"];
     }
     
-    if (indexPath.row == 0) {
-        cell.textLabel.text = _sessionItems[indexPath.section];
-        
-        // Remove seperator inset
-        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-            [cell setSeparatorInset:UIEdgeInsetsZero];
-        }
-        
-        // Prevent the cell from inheriting the Table View's margin settings
-        if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
-            [cell setPreservesSuperviewLayoutMargins:NO];
-        }
-        
-        // Explictly set your cell's layout margins
-        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-        }
-    
-    }else {
-        cell.textLabel.text = _subjectItems[indexPath.row-1];
-    }
-    
-    // セルにテキストを設定
-    // セルの内容はNSArray型の「items」にセットされているものとする
-    
+   cell.titleLabel.text = @"bbb";
     
     return cell;
 }
+
 
 - (void)reloadTableView {
     for(UIView *view in [pagingScrollView subviews]){
@@ -141,6 +116,14 @@ static const float SCROLL_MENU_BAR_HEIGHT = 40.0f;
     
     _indexOfTab = scrollView.contentOffset.x / scrollView.frame.size.width;
     
+    [_scrollMenuBar removeFromSuperview];
+    // メニューバー追加
+    NSArray *menus = [self setupMenus2];
+    _scrollMenuBar = [[ScrollMenuBar alloc] initWithArray:menus point:CGPointMake(0, (STATUS_BAR_HEIGHT+ SCROLL_MENU_BAR_HEIGHT))] ;
+    
+    
+    _scrollMenuBar.delegate = self ;
+    [self.view addSubview:_scrollMenuBar];
     //activate tab programatically
     [_scrollMenuBar activateTabMenuWithIndex:_indexOfTab];
     
@@ -175,7 +158,7 @@ static const float SCROLL_MENU_BAR_HEIGHT = 40.0f;
     for (int i = 0; i < NUMBER_OF_TABLES; i++) {
         
         UITableView *tableView = [[UITableView alloc] initWithFrame:tableFrame style:UITableViewStylePlain];
-        //        [tableView registerClass:[ArticleTableViewCell class] forCellReuseIdentifier:@"ArticleTableViewCell"];
+        [tableView registerClass:[ArticleTableViewCell class] forCellReuseIdentifier:@"ArticleTableViewCell"];
         UINib *cellNib = [UINib nibWithNibName:@"ArticleTableViewCell" bundle:nil];
         [tableView registerNib:cellNib forCellReuseIdentifier:@"ArticleTableViewCell"];
         
@@ -210,19 +193,44 @@ static const float SCROLL_MENU_BAR_HEIGHT = 40.0f;
     return @[
              @{
                  @"title":@"Rails",
-                 @"color":[ScrollMenuBar smartGreen]
-                 }, @{
-                 @"title":@"iOS",
-                 @"color":[ScrollMenuBar smartRed]
-                 }, @{
-                 @"title":@"Android",
                  @"color":[ScrollMenuBar smartBlue]
                  }, @{
+                 @"title":@"iOS",
+                 @"color":[ScrollMenuBar smartGray]
+                 }, @{
+                 @"title":@"Android",
+                 @"color":[ScrollMenuBar smartGray]
+                 }, @{
                  @"title":@"プロセス",
-                 @"color":[ScrollMenuBar smartOrange]
+                 @"color":[ScrollMenuBar smartGray]
                  }, @{
                  @"title":@"インフラ",
-                 @"color":[ScrollMenuBar smartPurple]
+                 @"color":[ScrollMenuBar smartGray]
+                 }, @{
+                 @"title":@"キャリア",
+                 @"color":[ScrollMenuBar smartGray]
+                 },
+             ] ;
+    
+}
+
+- (NSArray *)setupMenus2 {
+    return @[
+             @{
+                 @"title":@"Rails",
+                 @"color":[ScrollMenuBar smartGray]
+                 }, @{
+                 @"title":@"iOS",
+                 @"color":[ScrollMenuBar smartBlue]
+                 }, @{
+                 @"title":@"Android",
+                 @"color":[ScrollMenuBar smartGray]
+                 }, @{
+                 @"title":@"プロセス",
+                 @"color":[ScrollMenuBar smartGray]
+                 }, @{
+                 @"title":@"インフラ",
+                 @"color":[ScrollMenuBar smartGray]
                  }, @{
                  @"title":@"キャリア",
                  @"color":[ScrollMenuBar smartGray]
